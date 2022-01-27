@@ -7,15 +7,16 @@ const router = Router();
 router.get("/", () => new Response(html, {headers: {"Content-Type": "text/html"}}));
 router.get("/style.css", () => new Response(css, {headers: {"Content-Type": "text/css"}}));
 router.get("/api/:time", ({params}) => {
-  let date = new Date(params.time);
-  console.log(isNaN(date.getTime()))
-  if(isNaN(date.getTime())) {
-    date = new Date(0);
-    date.setUTCSeconds(params.time/1000);
-  }
+  let date;
+  if(Number.isNaN(Number.parseInt(params.time))) date = new Date(params.time);
+  else date = new Date(Number.parseInt(params.time));
   return new Response(JSON.stringify({unix: date.getTime(), utc: date.toUTCString()}), {headers:{"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}});
 });
-router.all("/*", () => Response.redirect("/"));
+router.get("/api", () => {
+  const date = new Date();
+  return new Response(JSON.stringify({unix: date.getTime(), utc: date.toUTCString()}), {headers:{"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}});
+})
+router.all("/*", () => new Response("Boop!"));
 
 export default {
   fetch: router.handle

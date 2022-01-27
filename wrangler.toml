@@ -9,3 +9,7 @@ command = "yarn build"
 [build.upload]
 format = "modules"
 main = "./worker.mjs"
+
+[miniflare]
+watch = true
+port = 80

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "esbuild src/index.mjs --bundle --loader:.html=text --loader:.css=text --minify --format=esm --target=es2020 --sourcemap --outfile=dist/worker.mjs",
-    "test": "miniflare -w"
+    "test": "miniflare"
   },
   "dependencies": {
     "esbuild": "^0.14.14",

@@ -1,0 +1,11 @@
+name = "timestamp"
+type = "javascript"
+workers_dev = true
+compatibility_date = "2022-01-27"
+account_id = "864cdf76f8254fb5539425299984d766"
+
+[build]
+command = "yarn build"
+[build.upload]
+format = "modules"
+main = "./worker.mjs"
